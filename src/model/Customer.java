@@ -20,18 +20,43 @@ public class Customer {
     }
 
     private int generateNomorAntrian(String tipe) {
+        int nomor;
         switch (tipe) {
-            case "VIP": return counterVIP++;
-            case "TAKEAWAY": return counterTakeaway++;
-            default: return counterRegular++;
+            case "VIP":
+                nomor = counterVIP;
+                counterVIP++;
+                break;
+            case "TAKEAWAY":
+                nomor = counterTakeaway;
+                counterTakeaway++;
+                break;
+            default:
+                nomor = counterRegular;
+                counterRegular++;
+                break;
         }
+        return nomor;
     }
 
-    public int getNomorAntrian() { return nomorAntrian; }
-    public String getNama() { return nama; }
-    public String getNoHp() { return noHp; }
-    public String getPesanan() { return pesanan; }
-    public String getTipeAntrian() { return tipeAntrian; }
+    public int getNomorAntrian() {
+        return nomorAntrian;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getNoHp() {
+        return noHp;
+    }
+
+    public String getPesanan() {
+        return pesanan;
+    }
+
+    public String getTipeAntrian() {
+        return tipeAntrian;
+    }
 
     @Override
     public String toString() {
