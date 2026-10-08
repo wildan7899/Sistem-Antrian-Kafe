@@ -1,0 +1,30 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+*.log
+
+# IDEs
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+out/
+target/
+.vscode/
+bin/
+build/
+nbproject/
+dist/
+
+# OS
+Thumbs.db
+.DS_Store
