@@ -35,15 +35,16 @@ java -cp bin main.Main
 === SISTEM ANTRIAN KAFE ===
 Status Antrian Awal:
 --- REGULAR ---
-[REGULAR-001] Budi            | HP: 0812         | Pesanan: Kopi
+[REGULAR-001] Wildan            | HP: 08xxxxx         | Pesanan: Kopi
+[REGULAR-002] Bintang            | HP: 08xxxxx         | Pesanan: Susu
 --- VIP ---
-[VIP-100] Dewi            | HP: 0845         | Pesanan: Latte
+[VIP-100] Isam            | HP: 08xxxxx         | Pesanan: Latte
 --- TAKEAWAY ---
-[TAKEAWAY-200] Fajar           | HP: 0867         | Pesanan: Sandwich
+[TAKEAWAY-200] Topan           | HP: 08xxxxx         | Pesanan: Sandwich
 ```
 
 ## Fitur
- 1. Auto‑numbering antrian per tipe (REGULAR‑001, VIP‑100, TAKEAWAY‑200).
+ 1. Auto‑numbering antrian per tipe (REGULAR‑001, REGULAR-002, VIP‑100, TAKEAWAY‑200).
  2. Implementasi ADT dengan method `tambahPelanggan`, `hapusPelanggan`, `tampilkanAntrian`, `isEmpty`.
  3. Inheritance untuk tiga tipe antrian:
     - Regular → Single Linked List
@@ -58,4 +59,4 @@ Status Antrian Awal:
  4. Push ke branch dan buat Pull Request.
 
 ## Lisensi
-Proyek praktikum Algoritma dan Pemrograman (2026). Bebas untuk penggunaan edukasi.
+Proyek Algoritma dan Struktur Data (2026). Bebas untuk penggunaan edukasi.
