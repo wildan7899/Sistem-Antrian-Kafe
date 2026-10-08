@@ -1,4 +1,6 @@
-public class DoubleLinkedList extends AntrianKafe {
+package model;
+
+public class SingleLinkedList extends AntrianKafe {
     protected Node head, tail;
 
     @Override
@@ -8,7 +10,6 @@ public class DoubleLinkedList extends AntrianKafe {
             head = tail = newNode;
         } else {
             tail.next = newNode;
-            newNode.prev = tail;
             tail = newNode;
         }
         totalAntrian++;
@@ -18,11 +19,7 @@ public class DoubleLinkedList extends AntrianKafe {
     public void hapusPelanggan() {
         if (isEmpty()) return;
         head = head.next;
-        if (head != null) {
-            head.prev = null;
-        } else {
-            tail = null;
-        }
+        if (head == null) tail = null;
         totalAntrian--;
     }
 

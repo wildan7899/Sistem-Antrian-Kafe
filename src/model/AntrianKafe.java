@@ -1,3 +1,5 @@
+package model;
+
 public abstract class AntrianKafe {
     protected int totalAntrian;
 
@@ -10,14 +12,11 @@ public abstract class AntrianKafe {
     public abstract void tampilkanAntrian();
     public abstract boolean isEmpty();
 
-    // Method baru untuk efisiensi manajemen
     public Customer getPelangganPertama() {
-        System.out.println("Implementasi getPelangganPertama bergantung pada subclass.");
         return null;
     }
 
     public boolean cariPelanggan(String nama) {
-        System.out.println("Implementasi pencarian bergantung pada subclass.");
         return false;
     }
 

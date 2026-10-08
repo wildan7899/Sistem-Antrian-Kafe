@@ -1,3 +1,5 @@
+package model;
+
 public class CircularLinkedList extends AntrianKafe {
     protected Node tail;
 

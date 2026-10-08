@@ -1,3 +1,7 @@
+package main;
+
+import model.*;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("=== SISTEM ANTRIAN KAFE (Optimized) ===\n");
@@ -6,7 +10,6 @@ public class Main {
         AntrianKafe vip = new DoubleLinkedList();
         AntrianKafe takeaway = new CircularLinkedList();
 
-        // Tes Auto Numbering & Centralized Node
         System.out.println("--- REGULAR ---");
         regular.tambahPelanggan(new Customer("Budi", "0812", "Kopi", "REGULAR"));
         regular.tambahPelanggan(new Customer("Ani", "0823", "Teh", "REGULAR"));
