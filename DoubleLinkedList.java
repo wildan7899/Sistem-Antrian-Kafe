@@ -1,19 +1,9 @@
-class DoubleNode {
-    Customer data;
-    DoubleNode prev, next;
+public class DoubleLinkedList extends AntrianKafe {
+    protected Node head, tail;
 
-    public DoubleNode(Customer data) {
-        this.data = data;
-        this.prev = null;
-        this.next = null;
-    }
-}
-
-class DoubleLinkedList extends AntrianKafe {
-    private DoubleNode head, tail;
-
+    @Override
     public void tambahPelanggan(Customer c) {
-        DoubleNode newNode = new DoubleNode(c);
+        Node newNode = new Node(c);
         if (head == null) {
             head = tail = newNode;
         } else {
@@ -24,8 +14,9 @@ class DoubleLinkedList extends AntrianKafe {
         totalAntrian++;
     }
 
+    @Override
     public void hapusPelanggan() {
-        if (head == null) return;
+        if (isEmpty()) return;
         head = head.next;
         if (head != null) {
             head.prev = null;
@@ -35,14 +26,20 @@ class DoubleLinkedList extends AntrianKafe {
         totalAntrian--;
     }
 
+    @Override
     public void tampilkanAntrian() {
-        DoubleNode temp = head;
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
+        Node temp = head;
         while (temp != null) {
             System.out.println(temp.data);
             temp = temp.next;
         }
     }
 
+    @Override
     public boolean isEmpty() {
         return head == null;
     }

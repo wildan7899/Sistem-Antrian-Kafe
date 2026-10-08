@@ -1,6 +1,7 @@
-class CircularLinkedList extends AntrianKafe {
-    private Node tail;
+public class CircularLinkedList extends AntrianKafe {
+    protected Node tail;
 
+    @Override
     public void tambahPelanggan(Customer c) {
         Node newNode = new Node(c);
         if (tail == null) {
@@ -14,8 +15,9 @@ class CircularLinkedList extends AntrianKafe {
         totalAntrian++;
     }
 
+    @Override
     public void hapusPelanggan() {
-        if (tail == null) return;
+        if (isEmpty()) return;
         if (tail.next == tail) {
             tail = null;
         } else {
@@ -24,8 +26,12 @@ class CircularLinkedList extends AntrianKafe {
         totalAntrian--;
     }
 
+    @Override
     public void tampilkanAntrian() {
-        if (tail == null) return;
+        if (isEmpty()) {
+            System.out.println("Antrian kosong.");
+            return;
+        }
         Node temp = tail.next;
         do {
             System.out.println(temp.data);
@@ -33,6 +39,7 @@ class CircularLinkedList extends AntrianKafe {
         } while (temp != tail.next);
     }
 
+    @Override
     public boolean isEmpty() {
         return tail == null;
     }
