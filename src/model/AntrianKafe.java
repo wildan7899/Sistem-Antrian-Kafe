@@ -12,18 +12,6 @@ public abstract class AntrianKafe {
     public abstract void tampilkanAntrian();
     public abstract boolean isEmpty();
 
-    public Customer getPelangganPertama() {
-        return null;
-    }
-
-    public boolean cariPelanggan(String nama) {
-        return false;
-    }
-
-    public void resetAntrian() {
-        totalAntrian = 0;
-    }
-
     public int getTotalAntrian() {
         return totalAntrian;
     }
