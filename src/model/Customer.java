@@ -35,7 +35,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return String.format("[%s-%03d] %-15s | HP: %-12s | Pesanan: %s", 
-            tipeAntrian, nomorAntrian, nama, noHp, pesanan);
+        return "[" + tipeAntrian + "-" + nomorAntrian + "] " + nama + " | HP: " + noHp + " | Pesanan: " + pesanan;
     }
 }

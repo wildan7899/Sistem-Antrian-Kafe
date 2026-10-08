@@ -6,6 +6,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== SISTEM ANTRIAN KAFE - ADT ===\n");
         
+        // TODO: Tim Linked List - Buat class Node.java dan hubungkan dengan subclass Antrian
+        // TODO: Tim Inheritance - Instansiasi subclass (Single/Double/Circular) di sini
+        
         displayAdtOperations();
         demonstrateCustomer();
         
@@ -13,7 +16,7 @@ public class Main {
     }
 
     private static void displayAdtOperations() {
-        System.out.println("ADT 'AntrianKafe' menyediakan operasi:");
+        System.out.println("ADT 'AntrianKafe' menyediakan operasi yang harus diimplementasikan:");
         System.out.println("1. tambahPelanggan(Customer customer)");
         System.out.println("2. hapusPelanggan()");
         System.out.println("3. tampilkanAntrian()");
