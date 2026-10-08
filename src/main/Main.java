@@ -2,32 +2,29 @@ package main;
 
 import model.*;
 
+/**
+ * Program demo untuk menunjukkan penggunaan ADT AntrianKafe
+ * Catatan: Implementasi konkret akan dibuat oleh tim lain (Inheritance & Linked List)
+ */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== SISTEM ANTRIAN KAFE ===\n");
-
-        AntrianKafe regular = new SingleLinkedList();
-        AntrianKafe vip = new DoubleLinkedList();
-        AntrianKafe takeaway = new CircularLinkedList();
-
-        System.out.println("--- REGULAR (Single Linked List) ---");
-        regular.tambahPelanggan(new Customer("Budi", "0812", "Kopi", "REGULAR"));
-        regular.tambahPelanggan(new Customer("Ani", "0823", "Teh", "REGULAR"));
-        regular.tampilkanAntrian();
-
-        System.out.println("\n--- VIP (Double Linked List) ---");
-        vip.tambahPelanggan(new Customer("Dewi", "0845", "Latte", "VIP"));
-        vip.tambahPelanggan(new Customer("Eko", "0856", "Espresso", "VIP"));
-        vip.tampilkanAntrian();
-
-        System.out.println("\n--- TAKEAWAY (Circular Linked List) ---");
-        takeaway.tambahPelanggan(new Customer("Fajar", "0867", "Sandwich", "TAKEAWAY"));
-        takeaway.tambahPelanggan(new Customer("Gita", "0878", "Croissant", "TAKEAWAY"));
-        takeaway.tampilkanAntrian();
-
-        System.out.println("\n--- Test Hapus Pelanggan ---");
-        System.out.println("Hapus dari REGULAR:");
-        regular.hapusPelanggan();
-        regular.tampilkanAntrian();
+        System.out.println("=== DEMO ADT ANTRIAN KAFE ===\n");
+        
+        // ADT murni hanya berupa kontrak, implementasi konkret nanti dibuat teman lain
+        // Untuk demo, kita hanya menunjukkan struktur ADT yang telah dibuat
+        System.out.println("ADT 'AntrianKafe' memiliki 5 operasi abstrak:");
+        System.out.println("1. tambahPelanggan(Customer c)");
+        System.out.println("2. hapusPelanggan()");
+        System.out.println("3. tampilkanAntrian()");
+        System.out.println("4. isEmpty()");
+        System.out.println("5. getTotalAntrian()\n");
+        
+        System.out.println("Customer ADT juga sudah siap:");
+        Customer dummy = new Customer("Wildan", "081234567890", "Kopi Susu", "REGULAR");
+        System.out.println("Customer: " + dummy);
+        
+        System.out.println("\n--- END OF DEMO ---");
+        System.out.println("Tim inheritance akan implement Single/Double/Circular LinkedList");
+        System.out.println("Tim linked list akan implement Node dan struktur linked list");
     }
 }
