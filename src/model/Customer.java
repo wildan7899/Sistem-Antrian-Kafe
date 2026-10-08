@@ -16,17 +16,14 @@ public class Customer {
         this.noHp = noHp;
         this.pesanan = pesanan;
         this.tipeAntrian = tipeAntrian.toUpperCase();
-        
-        switch (this.tipeAntrian) {
-            case "VIP":
-                this.nomorAntrian = counterVIP++;
-                break;
-            case "TAKEAWAY":
-                this.nomorAntrian = counterTakeaway++;
-                break;
-            default:
-                this.nomorAntrian = counterRegular++;
-                break;
+        this.nomorAntrian = generateNomorAntrian(this.tipeAntrian);
+    }
+
+    private int generateNomorAntrian(String tipe) {
+        switch (tipe) {
+            case "VIP": return counterVIP++;
+            case "TAKEAWAY": return counterTakeaway++;
+            default: return counterRegular++;
         }
     }
 
