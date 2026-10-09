@@ -4,7 +4,7 @@ import model.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== SISTEM ANTRIAN KAFE - ADT ===\n");
+        System.out.println("[   === SISTEM ANTRIAN KAFE ===   ]\n");
         
         // TODO: Tim Linked List - Buat class Node.java dan hubungkan dengan subclass Antrian
         // TODO: Tim Inheritance - Instansiasi subclass (Single/Double/Circular) di sini
