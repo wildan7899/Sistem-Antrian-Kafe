@@ -7,6 +7,9 @@ public abstract class AntrianKafe {
         this.totalAntrian = 0;
     }
 
+    // Kontrak method abstrak yang diwariskan dan diimplementasikan oleh subclass:
+    // (SingleLinkedList, DoubleLinkedList, CircularLinkedList)
+    
     public abstract void tambahPelanggan(Pelanggan pelanggan);
 
     public abstract void hapusPelanggan();

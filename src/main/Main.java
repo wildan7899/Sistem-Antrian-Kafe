@@ -6,7 +6,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== SISTEM ANTRIAN KAFE ===\n");
 
-        // Instansiasi antrian menggunakan implementasi linked list
+        // =========================================================================
+        // IMPLEMENTASI INHERITANCE & POLYMORPHISM (Tim Inheritance)
+        // Menggunakan tipe referensi superclass (AntrianKafe) untuk menginstansiasi
+        // subclass konkret (SingleLinkedList, DoubleLinkedList, CircularLinkedList)
+        // =========================================================================
         AntrianKafe antrianReguler = new SingleLinkedList();
         AntrianKafe antrianVIP = new DoubleLinkedList();
         AntrianKafe antrianTakeaway = new CircularLinkedList();
