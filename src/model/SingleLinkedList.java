@@ -23,6 +23,10 @@ public class SingleLinkedList extends AntrianKafe {
 
     @Override
     public void tambahPelanggan(Pelanggan pelanggan) {
+        if (pelanggan == null) {
+            return;
+        }
+
         Node newNode = new Node(pelanggan);
         if (apakahKosong()) {
             head = newNode;
@@ -32,13 +36,13 @@ public class SingleLinkedList extends AntrianKafe {
             tail = newNode;
         }
         totalAntrian++;
-        System.out.println("Pelanggan berhasil ditambahkan ke Single Linked List: " + pelanggan);
+        System.out.println("[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
         if (apakahKosong()) {
-            System.out.println("Antrian kosong! Tidak ada pelanggan yang dapat dihapus.");
+            System.out.println("[!] Antrian REGULER kosong! Tidak ada pelanggan yang dapat dilayani.");
             return;
         }
 
@@ -50,24 +54,34 @@ public class SingleLinkedList extends AntrianKafe {
             tail = null;
         }
 
-        System.out.println("Melayani / Menghapus pelanggan (FIFO): " + pelangganDihapus);
+        System.out.println("[-] Melayani pelanggan (FIFO): " + pelangganDihapus);
     }
 
     @Override
     public void tampilkanAntrian() {
+        System.out.println("=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===");
         if (apakahKosong()) {
-            System.out.println("Antrian kafe saat ini kosong.");
+            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
+            System.out.println("Total Antrian: 0");
             return;
         }
 
-        System.out.println("=== DAFTAR ANTRIAN KAFE (SINGLE LINKED LIST) ===");
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
+        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         Node current = head;
         int index = 1;
         while (current != null) {
-            System.out.println(index + ". " + current.data);
+            Pelanggan p = current.data;
+            String nama = formatKolom(p.getNama(), 18);
+            String noHp = formatKolom(p.getNoHp(), 14);
+            String pesanan = formatKolom(p.getPesanan(), 16);
+            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
+                    index, p.getKodeAntrian(), nama, noHp, pesanan);
             current = current.next;
             index++;
         }
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         System.out.println("Total Antrian: " + totalAntrian);
     }
 

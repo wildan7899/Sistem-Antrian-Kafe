@@ -12,18 +12,46 @@ public class Pelanggan {
     private String tipeAntrian;
 
     public Pelanggan(String nama, String noHp, String pesanan, String tipeAntrian) {
-        this.nama = nama;
-        this.noHp = noHp;
-        this.pesanan = pesanan;
+        this.nama = (nama != null) ? nama : "-";
+        this.noHp = (noHp != null) ? noHp : "-";
+        this.pesanan = (pesanan != null) ? pesanan : "-";
 
-        String tipeUpper = tipeAntrian.toUpperCase();
-        if (tipeUpper.equals("REGULAR")) {
+        if (tipeAntrian == null) {
             this.tipeAntrian = "REGULER";
         } else {
-            this.tipeAntrian = tipeUpper;
+            String tipeUpper = tipeAntrian.toUpperCase();
+            if (tipeUpper.equals("REGULAR")) {
+                this.tipeAntrian = "REGULER";
+            } else {
+                this.tipeAntrian = tipeUpper;
+            }
         }
 
         this.nomorAntrian = buatNomorAntrian(this.tipeAntrian);
+    }
+
+    public static void resetPenghitung() {
+        penghitungReguler = 1;
+        penghitungVIP = 100;
+        penghitungTakeaway = 200;
+    }
+
+    public static int getPenghitungReguler() {
+        return penghitungReguler;
+    }
+
+    public static int getPenghitungVIP() {
+        return penghitungVIP;
+    }
+
+    public static int getPenghitungTakeaway() {
+        return penghitungTakeaway;
+    }
+
+    public static void setPenghitung(int reguler, int vip, int takeaway) {
+        penghitungReguler = reguler;
+        penghitungVIP = vip;
+        penghitungTakeaway = takeaway;
     }
 
     private int buatNomorAntrian(String tipe) {
@@ -65,14 +93,18 @@ public class Pelanggan {
         return tipeAntrian;
     }
 
-    @Override
-    public String toString() {
+    public String getKodeAntrian() {
         String nomorStr = "" + nomorAntrian;
         if (nomorAntrian < 10) {
             nomorStr = "00" + nomorAntrian;
         } else if (nomorAntrian < 100) {
             nomorStr = "0" + nomorAntrian;
         }
-        return "[" + tipeAntrian + "-" + nomorStr + "] " + nama + " | HP: " + noHp + " | Pesanan: " + pesanan;
+        return tipeAntrian + "-" + nomorStr;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getKodeAntrian() + "] " + nama + " | HP: " + noHp + " | Pesanan: " + pesanan;
     }
 }
