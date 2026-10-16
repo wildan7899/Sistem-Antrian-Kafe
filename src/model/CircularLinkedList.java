@@ -1,19 +1,16 @@
 package model;
 
 /**
- * Antrian TAKEAWAY menggunakan Circular Linked List (singly).
- * Menyimpan pointer ke node TERAKHIR (tail); tail.next selalu menunjuk
- * ke node pertama (head), sehingga tambah di belakang dan hapus di depan
- * sama-sama O(1).
+ * Antrian TAKEAWAY menggunakan Circular Linked List.
+ * Pointer tail.next selalu menunjuk ke node head.
  */
 public class CircularLinkedList extends AntrianKafe {
 
-    // Node dibuat nested supaya file ini tidak bergantung pada Node.java
     private static class Node {
-        Customer data;
+        Pelanggan data;
         Node next;
 
-        Node(Customer data) {
+        Node(Pelanggan data) {
             this.data = data;
         }
     }
@@ -25,64 +22,63 @@ public class CircularLinkedList extends AntrianKafe {
         this.tail = null;
     }
 
-    // Tambah pelanggan di belakang antrian
     @Override
-    public void tambahPelanggan(Customer customer) {
-        if (customer == null) {
+    public void tambahPelanggan(Pelanggan pelanggan) {
+        if (pelanggan == null) {
             return;
         }
 
-        Node baru = new Node(customer);
+        Node newNode = new Node(pelanggan);
 
         if (tail == null) {
-            // Node pertama menunjuk ke dirinya sendiri
-            baru.next = baru;
-            tail = baru;
+            newNode.next = newNode;
+            tail = newNode;
         } else {
-            baru.next = tail.next; // baru -> head
-            tail.next = baru;      // tail lama -> baru
-            tail = baru;           // baru jadi tail
+            newNode.next = tail.next; // newNode -> head
+            tail.next = newNode;      // tail lama -> newNode
+            tail = newNode;           // newNode jadi tail
         }
         totalAntrian++;
+        System.out.println("Pelanggan berhasil ditambahkan ke Circular Linked List: " + pelanggan);
     }
 
-    // Hapus pelanggan paling depan (FIFO)
     @Override
     public void hapusPelanggan() {
-        if (isEmpty()) {
-            System.out.println("Antrian TAKEAWAY kosong.");
+        if (apakahKosong()) {
+            System.out.println("Antrian kosong! Tidak ada pelanggan yang dapat dihapus.");
             return;
         }
 
         Node head = tail.next;
-        System.out.println("Melayani: " + head.data);
-
         if (head == tail) {
-            // Hanya ada satu node
             tail = null;
         } else {
-            tail.next = head.next; // lewati head
+            tail.next = head.next;
         }
         totalAntrian--;
+        System.out.println("Melayani / Menghapus pelanggan (FIFO): " + head.data);
     }
 
-    // Cetak semua pelanggan dari depan sampai belakang
     @Override
     public void tampilkanAntrian() {
-        if (isEmpty()) {
-            System.out.println("(Antrian TAKEAWAY kosong)");
+        if (apakahKosong()) {
+            System.out.println("Antrian kafe saat ini kosong.");
             return;
         }
 
+        System.out.println("=== DAFTAR ANTRIAN KAFE (CIRCULAR LINKED LIST) ===");
         Node current = tail.next; // mulai dari head
+        int index = 1;
         do {
-            System.out.println(current.data);
+            System.out.println(index + ". " + current.data);
             current = current.next;
-        } while (current != tail.next); // berhenti saat kembali ke head
+            index++;
+        } while (current != tail.next);
+        System.out.println("Total Antrian: " + totalAntrian);
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean apakahKosong() {
         return tail == null;
     }
 }

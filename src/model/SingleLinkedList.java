@@ -3,10 +3,10 @@ package model;
 public class SingleLinkedList extends AntrianKafe {
 
     private static class Node {
-        Customer data;
+        Pelanggan data;
         Node next;
 
-        Node(Customer data) {
+        Node(Pelanggan data) {
             this.data = data;
             this.next = null;
         }
@@ -22,9 +22,9 @@ public class SingleLinkedList extends AntrianKafe {
     }
 
     @Override
-    public void tambahPelanggan(Customer customer) {
-        Node newNode = new Node(customer);
-        if (isEmpty()) {
+    public void tambahPelanggan(Pelanggan pelanggan) {
+        Node newNode = new Node(pelanggan);
+        if (apakahKosong()) {
             head = newNode;
             tail = newNode;
         } else {
@@ -32,30 +32,30 @@ public class SingleLinkedList extends AntrianKafe {
             tail = newNode;
         }
         totalAntrian++;
-        System.out.println("Pelanggan berhasil ditambahkan ke Single Linked List: " + customer);
+        System.out.println("Pelanggan berhasil ditambahkan ke Single Linked List: " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
-        if (isEmpty()) {
+        if (apakahKosong()) {
             System.out.println("Antrian kosong! Tidak ada pelanggan yang dapat dihapus.");
             return;
         }
 
-        Customer removedCustomer = head.data;
+        Pelanggan pelangganDihapus = head.data;
         head = head.next;
         totalAntrian--;
 
         if (head == null) {
-            tail = null; 
+            tail = null;
         }
 
-        System.out.println("Melayani / Menghapus pelanggan (FIFO): " + removedCustomer);
+        System.out.println("Melayani / Menghapus pelanggan (FIFO): " + pelangganDihapus);
     }
 
     @Override
     public void tampilkanAntrian() {
-        if (isEmpty()) {
+        if (apakahKosong()) {
             System.out.println("Antrian kafe saat ini kosong.");
             return;
         }
@@ -72,7 +72,7 @@ public class SingleLinkedList extends AntrianKafe {
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean apakahKosong() {
         return head == null;
     }
 }

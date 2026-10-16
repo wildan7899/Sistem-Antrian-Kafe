@@ -7,16 +7,17 @@ public abstract class AntrianKafe {
         this.totalAntrian = 0;
     }
 
-    // TODO: Tim Inheritance - Gunakan method ini untuk memasukkan data ke Linked List
-    public abstract void tambahPelanggan(Customer customer);
+    public abstract void tambahPelanggan(Pelanggan pelanggan);
 
-    // TODO: Tim Inheritance - Implementasikan logika penghapusan elemen pertama (FIFO)
     public abstract void hapusPelanggan();
 
-    // TODO: Tim Inheritance - Implementasikan traversal Linked List untuk cetak data
     public abstract void tampilkanAntrian();
 
-    public abstract boolean isEmpty();
+    public abstract boolean apakahKosong();
+
+    public boolean isEmpty() {
+        return apakahKosong();
+    }
 
     public int getTotalAntrian() {
         return totalAntrian;
