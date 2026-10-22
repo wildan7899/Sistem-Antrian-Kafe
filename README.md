@@ -1,50 +1,139 @@
-# Sistem Antrian Kafe
+<p align="center">
+  <img src="assets/banner.png" alt="Sistem Antrian Kafe Banner" width="100%" />
+</p>
 
-Program Sistem Antrian Kafe dibuat menggunakan bahasa pemrograman **Java**. Proyek ini mengimplementasikan konsep:
-1. **ADT (Abstract Data Type)** – kelas abstrak `AntrianKafe` sebagai kontrak antarmuka operasi antrian.
-2. **Inheritance & Polymorphism** – `SingleLinkedList`, `DoubleLinkedList`, dan `CircularLinkedList` mewarisi kelas `AntrianKafe`.
-3. **Struktur Data Linked List**:
-   - **Single Linked List** untuk antrian reguler.
-   - **Double Linked List** untuk antrian VIP (mendukung traversal maju dan mundur).
-   - **Circular Linked List** untuk antrian takeaway (pointer `tail.next` menunjuk kembali ke `head`).
+<h1 align="center">☕ Sistem Antrian Kafe</h1>
 
-## Prasyarat
-- Java Development Kit (JDK) versi 8 atau yang lebih baru.
+<p align="center">
+  <b>Algoritma dan Struktur Data (ADT, Inheritence, LinkedList)</b><br>
+  Aplikasi manajemen antrian kafe berbasis konsol menggunakan Java dengan 3 variasi Linked List.
+</p>
 
-## Struktur Proyek
-```
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+  <img src="https://img.shields.io/badge/OOP-Inheritance%20%26%20Polymorphism-blue?style=for-the-badge" alt="OOP" />
+  <img src="https://img.shields.io/badge/Data%20Structure-Linked%20List-green?style=for-the-badge" alt="Data Structure" />
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status" />
+</p>
+
+---
+
+## 📌 Daftar Isi
+- [Tentang Proyek](#-tentang-proyek)
+- [Konsep Struktur Data & PBO](#-konsep-struktur-data--pbo)
+- [Struktur Proyek](#-struktur-proyek)
+- [Prasyarat](#-prasyarat)
+- [Panduan Instalasi & Eksekusi](#-panduan-instalasi--eksekusi)
+- [Alur & Fitur Program](#-alur--fitur-program)
+- [Demonstrasi Output](#-demonstrasi-output)
+- [Anggota Tim](#-anggota-tim)
+
+---
+
+## 📖 Tentang Proyek
+
+**Sistem Antrian Kafe** adalah aplikasi simulasi antrian kasir kafe yang dirancang untuk mendemonstrasikan penerapan konsep **Abstract Data Type (ADT)**, **Inheritance**, **Polymorphism**, serta tiga variasi struktur data **Linked List** dalam studi kasus dunia nyata:
+1. **Antrian Reguler** – Menggunakan **Single Linked List** (FIFO standar).
+2. **Antrian VIP** – Menggunakan **Double Linked List** (mendukung traversal maju dan mundur).
+3. **Antrian Takeaway** – Menggunakan **Circular Linked List** (siklus rotasi pesanan cepat).
+
+---
+
+## 🧠 Konsep Struktur Data
+
+### 1. Perbandingan Struktur Antrian
+
+| Kategori Antrian | Tipe Linked List | Struktur Node | Arah Traversal | Karakteristik Utama |
+| :--- | :--- | :--- | :---: | :--- |
+| **REGULER** | Single Linked List (SLL) | `data`, `next` | Maju | Pointer `head` di awal antrian dan `tail` di akhir. |
+| **VIP** | Double Linked List (DLL) | `data`, `prev`, `next` | Maju & Mundur | Bisa melihat antrian dari depan maupun dari belakang. |
+| **TAKEAWAY** | Circular Linked List (CLL) | `data`, `next` | Melingkar | Pointer `tail.next` selalu menunjuk kembali ke `head`. |
+
+<details>
+<summary><b>🔍 Klik di sini untuk melihat rincian konsep OOP yang digunakan</b></summary>
+
+- **Abstract Data Type (ADT)**: Kelas abstrak [`AntrianKafe`](src/model/AntrianKafe.java) mendefinisikan operasi dasar antrian seperti `tambahPelanggan()`, `hapusPelanggan()`, `tampilkanAntrian()`, dan `apakahKosong()`.
+- **Inheritance**: Subclass [`SingleLinkedList`](src/model/SingleLinkedList.java), [`DoubleLinkedList`](src/model/DoubleLinkedList.java), dan [`CircularLinkedList`](src/model/CircularLinkedList.java) mewarisi kelas basis `AntrianKafe`.
+- **Polymorphism**: Program utama mengelola tipe antrian yang berbeda menggunakan referensi superclass yang seragam (`AntrianKafe`).
+- **Encapsulation**: Data pelanggan dienkapsulasi dalam kelas [`Pelanggan`](src/model/Pelanggan.java) dengan atribut `private` dan akses kontrol via getter.
+</details>
+
+---
+
+## 📂 Struktur Proyek
+
+```text
 Sistem-Antrian-Kafe/
+├── assets/
+│   └── banner.png              # Banner visual proyek
 ├── src/
-│   ├── model/                     # Logika data dan struktur linked list
-│   │   ├── Pelanggan.java         # Entitas data pelanggan & generator nomor antrian
-│   │   ├── AntrianKafe.java       # Kelas abstrak basis (ADT Antrian)
-│   │   ├── SingleLinkedList.java   # Antrian Reguler (nested Node, pointer head & tail)
-│   │   ├── DoubleLinkedList.java   # Antrian VIP (nested Node, pointer head, tail, prev, next)
-│   │   └── CircularLinkedList.java # Antrian Takeaway (nested Node, pointer tail)
-│   └── main/                      # Entry point eksekusi program
-│       └── Main.java              # Program utama / simulasi antrian
-├── bin/                           # Direktori output bytecode (.class)
+│   ├── model/                  # Logika struktur data & entitas
+│   │   ├── AntrianKafe.java        # Abstract base class (ADT)
+│   │   ├── Pelanggan.java          # Entitas data pelanggan & generator nomor
+│   │   ├── SingleLinkedList.java   # Implementasi antrian Reguler
+│   │   ├── DoubleLinkedList.java   # Implementasi antrian VIP
+│   │   └── CircularLinkedList.java # Implementasi antrian Takeaway
+│   └── main/                   # Titik masuk program
+│       └── Main.java               # Menu interaktif & runner simulasi
+├── bin/                        # Direktori output kompilasi bytecode (.class)
 ├── .gitignore
 └── README.md
 ```
 
-## Kompilasi & Menjalankan Program
+---
 
-Buka terminal pada direktori root proyek (`Sistem-Antrian-Kafe`):
+## ⚙️ Prasyarat
+
+- **Java Development Kit (JDK)**: Versi 8 atau yang lebih baru.
+- **Terminal / Command Prompt / PowerShell**.
+
+---
+
+## 🚀 Panduan Instalasi & Eksekusi
+
+### 1. Kompilasi Program
+Buka terminal di root direktori proyek, lalu jalankan perintah:
 
 ```bash
-# 1. Kompilasi seluruh file sumber Java ke direktori bin
 javac -d bin src/model/*.java src/main/*.java
+```
 
-# 2. Jalankan Program:
-# Mode A: Menu Interaktif Kasir (Input pengguna)
+### 2. Menjalankan Program
+
+Pilih salah satu mode di bawah ini:
+
+#### 🔹 Mode A: Menu Interaktif (Input Manual Kasir)
+```bash
 java -cp bin main.Main
+```
 
-# Mode B: Demonstrasi Simulasi Otomatis Langsung
+#### 🔹 Mode B: Demonstrasi Otomatis (Demo Cepat)
+```bash
 java -cp bin main.Main --demo
 ```
 
-### Hasil Output Terminal (Simulasi Otomatis / Menu [5]):
+---
+
+## 🎯 Alur & Fitur Program
+
+Program dilengkapi menu interaktif di terminal dengan fitur:
+- `[1]` **Tambah Pelanggan Baru**: Input nama, nomor HP, dan pesanan ke kategori yang dipilih. Nomor antrian digenerate otomatis:
+  - `REGULER-001`, `REGULER-002`, ...
+  - `VIP-100`, `VIP-101`, ...
+  - `TAKEAWAY-200`, `TAKEAWAY-201`, ...
+- `[2]` **Panggil / Layani Pelanggan (FIFO)**: Melayani pelanggan yang berada di urutan terdepan.
+- `[3]` **Tampilkan Semua Antrian**: Melihat status antrian aktif dari ketiga kategori.
+- `[4]` **Lihat VIP dari Belakang**: Fitur traversal mundur khusus Double Linked List.
+- `[5]` **Simulasi Otomatis**: Menjalankan skenario pengujian 4 tahap dari penambahan sampai antrian dilayani.
+- **Clear Screen**: Layar terminal otomatis dibersihkan setiap kali berganti menu agar tampilan rapi.
+
+---
+
+## 💻 Demonstrasi Output
+
+<details open>
+<summary><b>📺 Contoh Output Eksekusi Mode Simulasi (Klik untuk Buka/Tutup)</b></summary>
+
 ```text
 ========================================
      DEMONSTRASI SIMULASI OTOMATIS
@@ -93,23 +182,21 @@ Total: 0 orang
        SIMULASI OTOMATIS SELESAI
 ========================================
 ```
+</details>
 
-## Fitur & Operasi
-1. **Penomoran Otomatis Berdasarkan Kategori**:
-   - `REGULER-001`, `REGULER-002`, ...
-   - `VIP-100`, `VIP-101`, ...
-   - `TAKEAWAY-200`, `TAKEAWAY-201`, ...
-2. **Operasi Standar ADT Antrian**:
-   - `tambahPelanggan(Pelanggan)`: Menambahkan data pelanggan ke ujung belakang antrian.
-   - `hapusPelanggan()`: Melayani dan mengeluarkan pelanggan terdepan antrian (FIFO).
-   - `tampilkanAntrian()`: Menampilkan daftar seluruh pelanggan yang sedang mengantre.
-   - `apakahKosong()`: Memeriksa apakah antrian dalam kondisi kosong.
-   - `getTotalAntrian()`: Mengambil jumlah total pelanggan aktif dalam antrian.
-3. **Getter Standar Entitas Pelanggan**:
-   - `getKodeAntrian()`, `getNama()`, `getNoHp()`, `getPesanan()`, `getTipeAntrian()`.
-4. **Pemisahan Paket Berorientasi Objek**:
-   - Paket `model`: Berisi struktur data murni dan entitas data tanpa ketergantungan antarmuka luar.
-   - Paket `main`: Berisi kelas `Main` sebagai runner pengujian dan demonstrasi simulasi antrian.
+---
 
-## Lisensi
-Proyek Algoritma dan Struktur Data / PBO (2026).
+## 👥 Anggota Tim
+
+| No | Nama Anggota | Peran / Data Awal Antrian |
+| :-: | :--- | :--- |
+| 1 | **Wildan** | Antrian Reguler 01 |
+| 2 | **Bintang** | Antrian Reguler 02 |
+| 3 | **Isam** | Antrian VIP 100 |
+| 4 | **Topan** | Antrian Takeaway 200 |
+
+---
+
+<p align="center">
+  <b>Algortima dan Struktur Data</b> © 2026
+</p>
