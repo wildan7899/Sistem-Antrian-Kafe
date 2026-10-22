@@ -10,10 +10,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/OOP-Inheritance%20%26%20Polymorphism-blue?style=for-the-badge" alt="OOP" />
-  <img src="https://img.shields.io/badge/Data%20Structure-Linked%20List-green?style=for-the-badge" alt="Data Structure" />
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/%20Bahasa-Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+  <img src="https://img.shields.io/badge/%20Konsep-ADT, Inheritence, Linked%20List-blue?style=for-the-badge" alt="Data Structure" />
+  <img src="https://img.shields.io/badge/Status-Selesai-success?style=for-the-badge" alt="Status" />
 </p>
 
 ---
