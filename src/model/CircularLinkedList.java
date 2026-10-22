@@ -39,13 +39,13 @@ public class CircularLinkedList extends AntrianKafe {
             tail = newNode;           // newNode jadi tail
         }
         totalAntrian++;
-        System.out.println("Pelanggan berhasil ditambahkan ke Circular Linked List: " + pelanggan);
+        System.out.println("[+] Berhasil ditambahkan ke Antrian TAKEAWAY (Circular Linked List): " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
         if (apakahKosong()) {
-            System.out.println("Antrian kosong! Tidak ada pelanggan yang dapat dihapus.");
+            System.out.println("[!] Antrian TAKEAWAY kosong! Tidak ada pelanggan yang dapat dilayani.");
             return;
         }
 
@@ -56,24 +56,34 @@ public class CircularLinkedList extends AntrianKafe {
             tail.next = head.next;
         }
         totalAntrian--;
-        System.out.println("Melayani / Menghapus pelanggan (FIFO): " + head.data);
+        System.out.println("[-] Melayani pelanggan (FIFO): " + head.data);
     }
 
     @Override
     public void tampilkanAntrian() {
+        System.out.println("=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===");
         if (apakahKosong()) {
-            System.out.println("Antrian kafe saat ini kosong.");
+            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
+            System.out.println("Total Antrian: 0");
             return;
         }
 
-        System.out.println("=== DAFTAR ANTRIAN KAFE (CIRCULAR LINKED LIST) ===");
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
+        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         Node current = tail.next; // mulai dari head
         int index = 1;
         do {
-            System.out.println(index + ". " + current.data);
+            Pelanggan p = current.data;
+            String nama = formatKolom(p.getNama(), 18);
+            String noHp = formatKolom(p.getNoHp(), 14);
+            String pesanan = formatKolom(p.getPesanan(), 16);
+            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
+                    index, p.getKodeAntrian(), nama, noHp, pesanan);
             current = current.next;
             index++;
         } while (current != tail.next);
+        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         System.out.println("Total Antrian: " + totalAntrian);
     }
 

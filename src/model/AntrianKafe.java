@@ -25,4 +25,17 @@ public abstract class AntrianKafe {
     public int getTotalAntrian() {
         return totalAntrian;
     }
+
+    /**
+     * Memotong string jika melebihi panjang maksimal kolom agar tabel tetap rapi dan tidak berantakan.
+     */
+    protected String formatKolom(String teks, int maksPanjang) {
+        if (teks == null || teks.trim().isEmpty()) {
+            return "-";
+        }
+        if (teks.length() > maksPanjang) {
+            return teks.substring(0, maksPanjang - 3) + "...";
+        }
+        return teks;
+    }
 }

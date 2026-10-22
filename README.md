@@ -36,49 +36,85 @@ Buka terminal pada direktori root proyek (`Sistem-Antrian-Kafe`):
 # 1. Kompilasi seluruh file sumber Java ke direktori bin
 javac -d bin src/model/*.java src/main/*.java
 
-# 2. Jalankan kelas utama
+# 2. Jalankan Program (Pilih salah satu mode):
+# Mode A: Menu Interaktif Kasir (Input pengguna)
 java -cp bin main.Main
+
+# Mode B: Demonstrasi Simulasi Otomatis Langsung (Data tim lengkap)
+java -cp bin main.Main --demo
 ```
 
-### Hasil Output Terminal:
+### Hasil Output Terminal (Simulasi Otomatis / Menu [5]):
 ```text
-=== SISTEM ANTRIAN KAFE ===
+================================================================================
+                     SISTEM MANAJEMEN ANTRIAN KAFE                              
+================================================================================
 
---- 1. MENAMBAH PELANGGAN KE ANTRIAN ---
-Pelanggan berhasil ditambahkan ke Single Linked List: [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
-Pelanggan berhasil ditambahkan ke Single Linked List: [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
-Pelanggan berhasil ditambahkan ke Double Linked List: [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
-Pelanggan berhasil ditambahkan ke Circular Linked List: [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
+--------------------------------------------------------------------------------
+>>> 1. MENAMBAH PELANGGAN KE ANTRIAN
+--------------------------------------------------------------------------------
+[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
+[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+[+] Berhasil ditambahkan ke Antrian VIP (Double Linked List): [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
+[+] Berhasil ditambahkan ke Antrian TAKEAWAY (Circular Linked List): [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
 
---- 2. STATUS ANTRIAN SAAT INI ---
-=== DAFTAR ANTRIAN KAFE (SINGLE LINKED LIST) ===
-1. [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
-2. [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+--------------------------------------------------------------------------------
+>>> 2. STATUS SELURUH ANTRIAN SAAT INI
+--------------------------------------------------------------------------------
+=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===
++-----+---------------+--------------------+----------------+------------------+
+| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
++-----+---------------+--------------------+----------------+------------------+
+| 1   | REGULER-001   | Wildan             | 081234567890   | Kopi             |
+| 2   | REGULER-002   | Bintang            | 081234567891   | Susu             |
++-----+---------------+--------------------+----------------+------------------+
 Total Antrian: 2
 
-=== DAFTAR ANTRIAN KAFE (DOUBLE LINKED LIST) ===
-1. [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
+=== DAFTAR ANTRIAN: VIP (DOUBLE LINKED LIST) ===
++-----+---------------+--------------------+----------------+------------------+
+| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
++-----+---------------+--------------------+----------------+------------------+
+| 1   | VIP-100       | Isam               | 081234567892   | Latte            |
++-----+---------------+--------------------+----------------+------------------+
 Total Antrian: 1
 
-=== DAFTAR ANTRIAN KAFE (CIRCULAR LINKED LIST) ===
-1. [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
+=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===
++-----+---------------+--------------------+----------------+------------------+
+| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
++-----+---------------+--------------------+----------------+------------------+
+| 1   | TAKEAWAY-200  | Topan              | 081234567893   | Sandwich         |
++-----+---------------+--------------------+----------------+------------------+
 Total Antrian: 1
 
---- 3. MELAYANI PELANGGAN (FIFO) ---
-Melayani / Menghapus pelanggan (FIFO): [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
-Melayani / Menghapus pelanggan (FIFO): [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
-Melayani / Menghapus pelanggan (FIFO): [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
+--------------------------------------------------------------------------------
+>>> 3. MELAYANI PELANGGAN (FIFO)
+--------------------------------------------------------------------------------
+[-] Melayani pelanggan (FIFO): [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
+[-] Melayani pelanggan (FIFO): [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
+[-] Melayani pelanggan (FIFO): [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
 
---- 4. STATUS ANTRIAN SETELAH DILAYANI ---
-=== DAFTAR ANTRIAN KAFE (SINGLE LINKED LIST) ===
-1. [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+--------------------------------------------------------------------------------
+>>> 4. STATUS ANTRIAN SETELAH DILAYANI
+--------------------------------------------------------------------------------
+=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===
++-----+---------------+--------------------+----------------+------------------+
+| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
++-----+---------------+--------------------+----------------+------------------+
+| 1   | REGULER-002   | Bintang            | 081234567891   | Susu             |
++-----+---------------+--------------------+----------------+------------------+
 Total Antrian: 1
 
-Antrian kafe saat ini kosong.
+=== DAFTAR ANTRIAN: VIP (DOUBLE LINKED LIST) ===
+[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]
+Total Antrian: 0
 
-Antrian kafe saat ini kosong.
+=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===
+[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]
+Total Antrian: 0
 
-=== SELESAI ===
+================================================================================
+                       SIMULASI PROGRAM SELESAI                                 
+================================================================================
 ```
 
 ## Fitur & Operasi
