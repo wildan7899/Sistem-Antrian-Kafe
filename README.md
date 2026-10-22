@@ -142,4 +142,4 @@ Total Antrian: 0
 5. Buat *Pull Request*.
 
 ## Lisensi
-Proyek Praktikum Algoritma dan Struktur Data (2026). Bebas digunakan untuk keperluan edukasi dan pembelajaran.
+Proyek Algoritma dan Struktur Data (2026).
