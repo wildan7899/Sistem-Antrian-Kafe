@@ -19,7 +19,7 @@
 
 ## 📌 Daftar Isi
 - [Tentang Proyek](#-tentang-proyek)
-- [Konsep Struktur Data & PBO](#-konsep-struktur-data--pbo)
+- [Konsep Struktur Data](#-konsep-struktur-data)
 - [Struktur Proyek](#-struktur-proyek)
 - [Prasyarat](#-prasyarat)
 - [Panduan Instalasi & Eksekusi](#-panduan-instalasi--eksekusi)
