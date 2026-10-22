@@ -1,7 +1,9 @@
 package model;
 
+// Antrian reguler pakai Single Linked List (SLL)
 public class SingleLinkedList extends AntrianKafe {
 
+    // Node pembungkus data pelanggan
     private static class Node {
         Pelanggan data;
         Node next;
@@ -15,74 +17,56 @@ public class SingleLinkedList extends AntrianKafe {
     private Node head;
     private Node tail;
 
-    public SingleLinkedList() {
-        super();
-        this.head = null;
-        this.tail = null;
-    }
-
     @Override
     public void tambahPelanggan(Pelanggan pelanggan) {
-        if (pelanggan == null) {
-            return;
-        }
+        if (pelanggan == null) return;
 
         Node newNode = new Node(pelanggan);
         if (apakahKosong()) {
-            head = newNode;
-            tail = newNode;
+            head = tail = newNode;
         } else {
             tail.next = newNode;
             tail = newNode;
         }
         totalAntrian++;
-        System.out.println("[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): " + pelanggan);
+        System.out.println("[+] Masuk antrian REGULER : " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
         if (apakahKosong()) {
-            System.out.println("[!] Antrian REGULER kosong! Tidak ada pelanggan yang dapat dilayani.");
+            System.out.println("[!] Antrian REGULER kosong, tidak ada pelanggan untuk dilayani.");
             return;
         }
 
-        Pelanggan pelangganDihapus = head.data;
-        head = head.next;
+        Pelanggan dilayani = head.data;
+        head = head.next; // geser head ke orang berikutnya
         totalAntrian--;
 
+        // kalau antrian jadi habis, tail dinull-kan juga
         if (head == null) {
             tail = null;
         }
-
-        System.out.println("[-] Melayani pelanggan (FIFO): " + pelangganDihapus);
+        System.out.println("[-] Melayani pelanggan (FIFO): " + dilayani);
     }
 
     @Override
     public void tampilkanAntrian() {
-        System.out.println("=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===");
+        System.out.println("=== DAFTAR ANTRIAN: REGULER (Single Linked List) ===");
         if (apakahKosong()) {
-            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
-            System.out.println("Total Antrian: 0");
+            System.out.println("[ Antrian kosong ]");
+            System.out.println("Total: 0 orang");
             return;
         }
 
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         Node current = head;
-        int index = 1;
+        int no = 1;
         while (current != null) {
-            Pelanggan p = current.data;
-            String nama = formatKolom(p.getNama(), 18);
-            String noHp = formatKolom(p.getNoHp(), 14);
-            String pesanan = formatKolom(p.getPesanan(), 16);
-            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
-                    index, p.getKodeAntrian(), nama, noHp, pesanan);
+            System.out.println(no + ". " + current.data);
             current = current.next;
-            index++;
+            no++;
         }
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("Total Antrian: " + totalAntrian);
+        System.out.println("Total Antrian: " + totalAntrian + " orang");
     }
 
     @Override

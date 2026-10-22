@@ -36,85 +36,62 @@ Buka terminal pada direktori root proyek (`Sistem-Antrian-Kafe`):
 # 1. Kompilasi seluruh file sumber Java ke direktori bin
 javac -d bin src/model/*.java src/main/*.java
 
-# 2. Jalankan Program (Pilih salah satu mode):
+# 2. Jalankan Program:
 # Mode A: Menu Interaktif Kasir (Input pengguna)
 java -cp bin main.Main
 
-# Mode B: Demonstrasi Simulasi Otomatis Langsung (Data tim lengkap)
+# Mode B: Demonstrasi Simulasi Otomatis Langsung
 java -cp bin main.Main --demo
 ```
 
 ### Hasil Output Terminal (Simulasi Otomatis / Menu [5]):
 ```text
-================================================================================
-                     SISTEM MANAJEMEN ANTRIAN KAFE                              
-================================================================================
+========================================
+     DEMONSTRASI SIMULASI OTOMATIS
+========================================
 
---------------------------------------------------------------------------------
->>> 1. MENAMBAH PELANGGAN KE ANTRIAN
---------------------------------------------------------------------------------
-[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
-[+] Berhasil ditambahkan ke Antrian REGULER (Single Linked List): [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
-[+] Berhasil ditambahkan ke Antrian VIP (Double Linked List): [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
-[+] Berhasil ditambahkan ke Antrian TAKEAWAY (Circular Linked List): [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
+>>> TAHAP 1: Menambah Pelanggan Awal
+[*] Memuat data awal antrian:
+[+] Masuk antrian REGULER : [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
+[+] Masuk antrian REGULER : [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+[+] Masuk antrian VIP     : [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
+[+] Masuk antrian TAKEAWAY: [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
 
---------------------------------------------------------------------------------
->>> 2. STATUS SELURUH ANTRIAN SAAT INI
---------------------------------------------------------------------------------
-=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===
-+-----+---------------+--------------------+----------------+------------------+
-| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
-+-----+---------------+--------------------+----------------+------------------+
-| 1   | REGULER-001   | Wildan             | 081234567890   | Kopi             |
-| 2   | REGULER-002   | Bintang            | 081234567891   | Susu             |
-+-----+---------------+--------------------+----------------+------------------+
-Total Antrian: 2
+>>> TAHAP 2: Kondisi Antrian Saat Ini
+=== DAFTAR ANTRIAN: REGULER (Single Linked List) ===
+1. [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
+2. [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+Total Antrian: 2 orang
 
-=== DAFTAR ANTRIAN: VIP (DOUBLE LINKED LIST) ===
-+-----+---------------+--------------------+----------------+------------------+
-| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
-+-----+---------------+--------------------+----------------+------------------+
-| 1   | VIP-100       | Isam               | 081234567892   | Latte            |
-+-----+---------------+--------------------+----------------+------------------+
-Total Antrian: 1
+=== DAFTAR ANTRIAN: VIP (Double Linked List) ===
+1. [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
+Total Antrian: 1 orang
 
-=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===
-+-----+---------------+--------------------+----------------+------------------+
-| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
-+-----+---------------+--------------------+----------------+------------------+
-| 1   | TAKEAWAY-200  | Topan              | 081234567893   | Sandwich         |
-+-----+---------------+--------------------+----------------+------------------+
-Total Antrian: 1
+=== DAFTAR ANTRIAN: TAKEAWAY (Circular Linked List) ===
+1. [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
+Total Antrian: 1 orang
 
---------------------------------------------------------------------------------
->>> 3. MELAYANI PELANGGAN (FIFO)
---------------------------------------------------------------------------------
+>>> TAHAP 3: Melayani Pelanggan Terdepan (FIFO)
 [-] Melayani pelanggan (FIFO): [REGULER-001] Wildan | HP: 081234567890 | Pesanan: Kopi
 [-] Melayani pelanggan (FIFO): [VIP-100] Isam | HP: 081234567892 | Pesanan: Latte
 [-] Melayani pelanggan (FIFO): [TAKEAWAY-200] Topan | HP: 081234567893 | Pesanan: Sandwich
 
---------------------------------------------------------------------------------
->>> 4. STATUS ANTRIAN SETELAH DILAYANI
---------------------------------------------------------------------------------
-=== DAFTAR ANTRIAN: REGULER (SINGLE LINKED LIST) ===
-+-----+---------------+--------------------+----------------+------------------+
-| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |
-+-----+---------------+--------------------+----------------+------------------+
-| 1   | REGULER-002   | Bintang            | 081234567891   | Susu             |
-+-----+---------------+--------------------+----------------+------------------+
-Total Antrian: 1
+>>> TAHAP 4: Kondisi Antrian Setelah Dilayani
+=== DAFTAR ANTRIAN: REGULER (Single Linked List) ===
+1. [REGULER-002] Bintang | HP: 081234567891 | Pesanan: Susu
+Total Antrian: 1 orang
 
-=== DAFTAR ANTRIAN: VIP (DOUBLE LINKED LIST) ===
-[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]
-Total Antrian: 0
+=== DAFTAR ANTRIAN: VIP (Double Linked List) ===
+[ Antrian kosong ]
+Total: 0 orang
 
-=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===
-[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]
-Total Antrian: 0
+=== DAFTAR ANTRIAN: TAKEAWAY (Circular Linked List) ===
+[ Antrian kosong ]
+Total: 0 orang
 
-================================================================================
-                       SIMULASI PROGRAM SELESAI                                 
-================================================================================
+========================================
+       SIMULASI OTOMATIS SELESAI
+========================================
 ```
 
 ## Fitur & Operasi
@@ -126,20 +103,13 @@ Total Antrian: 0
    - `tambahPelanggan(Pelanggan)`: Menambahkan data pelanggan ke ujung belakang antrian.
    - `hapusPelanggan()`: Melayani dan mengeluarkan pelanggan terdepan antrian (FIFO).
    - `tampilkanAntrian()`: Menampilkan daftar seluruh pelanggan yang sedang mengantre.
-   - `apakahKosong()` / `isEmpty()`: Memeriksa apakah antrian dalam kondisi kosong.
+   - `apakahKosong()`: Memeriksa apakah antrian dalam kondisi kosong.
    - `getTotalAntrian()`: Mengambil jumlah total pelanggan aktif dalam antrian.
 3. **Getter Standar Entitas Pelanggan**:
-   - `getNomorAntrian()`, `getNama()`, `getNoHp()`, `getPesanan()`, `getTipeAntrian()`.
+   - `getKodeAntrian()`, `getNama()`, `getNoHp()`, `getPesanan()`, `getTipeAntrian()`.
 4. **Pemisahan Paket Berorientasi Objek**:
    - Paket `model`: Berisi struktur data murni dan entitas data tanpa ketergantungan antarmuka luar.
    - Paket `main`: Berisi kelas `Main` sebagai runner pengujian dan demonstrasi simulasi antrian.
 
-## Cara Berkontribusi
-1. Lakukan *fork* pada repositori ini.
-2. Buat *branch* fitur baru (`git checkout -b fitur/nama-fitur`).
-3. Lakukan *commit* terhadap perubahan (`git commit -m 'Menambahkan fitur XYZ'`).
-4. *Push* ke branch Anda (`git push origin fitur/nama-fitur`).
-5. Buat *Pull Request*.
-
 ## Lisensi
-Proyek Algoritma dan Struktur Data (2026).
+Proyek Algoritma dan Struktur Data / PBO (2026).

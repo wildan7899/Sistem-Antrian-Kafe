@@ -1,9 +1,6 @@
 package model;
 
-/**
- * Antrian TAKEAWAY menggunakan Circular Linked List.
- * Pointer tail.next selalu menunjuk ke node head.
- */
+// Antrian takeaway pakai Circular Linked List (tail.next nyambung balik ke head)
 public class CircularLinkedList extends AntrianKafe {
 
     private static class Node {
@@ -15,76 +12,63 @@ public class CircularLinkedList extends AntrianKafe {
         }
     }
 
+    // Cukup simpan pointer tail, karena tail.next otomatis adalah head
     private Node tail;
-
-    public CircularLinkedList() {
-        super();
-        this.tail = null;
-    }
 
     @Override
     public void tambahPelanggan(Pelanggan pelanggan) {
-        if (pelanggan == null) {
-            return;
-        }
+        if (pelanggan == null) return;
 
         Node newNode = new Node(pelanggan);
-
         if (tail == null) {
-            newNode.next = newNode;
+            newNode.next = newNode; // nunjuk ke dirinya sendiri
             tail = newNode;
         } else {
-            newNode.next = tail.next; // newNode -> head
-            tail.next = newNode;      // tail lama -> newNode
-            tail = newNode;           // newNode jadi tail
+            newNode.next = tail.next; // newNode nyambung ke head
+            tail.next = newNode;      // tail lama nyambung ke newNode
+            tail = newNode;           // newNode jadi tail baru
         }
         totalAntrian++;
-        System.out.println("[+] Berhasil ditambahkan ke Antrian TAKEAWAY (Circular Linked List): " + pelanggan);
+        System.out.println("[+] Masuk antrian TAKEAWAY: " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
         if (apakahKosong()) {
-            System.out.println("[!] Antrian TAKEAWAY kosong! Tidak ada pelanggan yang dapat dilayani.");
+            System.out.println("[!] Antrian TAKEAWAY kosong, tidak ada pelanggan untuk dilayani.");
             return;
         }
 
         Node head = tail.next;
+        Pelanggan dilayani = head.data;
+
         if (head == tail) {
-            tail = null;
+            tail = null; // sisa 1 node terus dihapus
         } else {
-            tail.next = head.next;
+            tail.next = head.next; // bypass head lama
         }
         totalAntrian--;
-        System.out.println("[-] Melayani pelanggan (FIFO): " + head.data);
+        System.out.println("[-] Melayani pelanggan (FIFO): " + dilayani);
     }
 
     @Override
     public void tampilkanAntrian() {
-        System.out.println("=== DAFTAR ANTRIAN: TAKEAWAY (CIRCULAR LINKED LIST) ===");
+        System.out.println("=== DAFTAR ANTRIAN: TAKEAWAY (Circular Linked List) ===");
         if (apakahKosong()) {
-            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
-            System.out.println("Total Antrian: 0");
+            System.out.println("[ Antrian kosong ]");
+            System.out.println("Total: 0 orang");
             return;
         }
 
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         Node current = tail.next; // mulai dari head
-        int index = 1;
+        int no = 1;
         do {
-            Pelanggan p = current.data;
-            String nama = formatKolom(p.getNama(), 18);
-            String noHp = formatKolom(p.getNoHp(), 14);
-            String pesanan = formatKolom(p.getPesanan(), 16);
-            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
-                    index, p.getKodeAntrian(), nama, noHp, pesanan);
+            System.out.println(no + ". " + current.data);
             current = current.next;
-            index++;
-        } while (current != tail.next);
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("Total Antrian: " + totalAntrian);
+            no++;
+        } while (current != tail.next); // berhenti kalau udah muter balik ke head
+
+        System.out.println("Total Antrian: " + totalAntrian + " orang");
     }
 
     @Override

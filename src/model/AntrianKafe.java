@@ -1,41 +1,16 @@
 package model;
 
+// Class abstract untuk struktur antrian kafe (menerapkan ADT)
 public abstract class AntrianKafe {
-    protected int totalAntrian;
+    protected int totalAntrian = 0;
 
-    public AntrianKafe() {
-        this.totalAntrian = 0;
-    }
-
-    // Kontrak method abstrak yang diwariskan dan diimplementasikan oleh subclass:
-    // (SingleLinkedList, DoubleLinkedList, CircularLinkedList)
-    
+    // Method wajib yang nanti dioverride di masing-masing linked list
     public abstract void tambahPelanggan(Pelanggan pelanggan);
-
     public abstract void hapusPelanggan();
-
     public abstract void tampilkanAntrian();
-
     public abstract boolean apakahKosong();
-
-    public boolean isEmpty() {
-        return apakahKosong();
-    }
 
     public int getTotalAntrian() {
         return totalAntrian;
-    }
-
-    /**
-     * Memotong string jika melebihi panjang maksimal kolom agar tabel tetap rapi dan tidak berantakan.
-     */
-    protected String formatKolom(String teks, int maksPanjang) {
-        if (teks == null || teks.trim().isEmpty()) {
-            return "-";
-        }
-        if (teks.length() > maksPanjang) {
-            return teks.substring(0, maksPanjang - 3) + "...";
-        }
-        return teks;
     }
 }

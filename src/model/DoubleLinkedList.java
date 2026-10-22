@@ -1,5 +1,6 @@
 package model;
 
+// Antrian VIP pakai Double Linked List (punya pointer prev dan next)
 public class DoubleLinkedList extends AntrianKafe {
 
     private static class Node {
@@ -17,39 +18,30 @@ public class DoubleLinkedList extends AntrianKafe {
     private Node head;
     private Node tail;
 
-    public DoubleLinkedList() {
-        super();
-        this.head = null;
-        this.tail = null;
-    }
-
     @Override
     public void tambahPelanggan(Pelanggan pelanggan) {
-        if (pelanggan == null) {
-            return;
-        }
+        if (pelanggan == null) return;
 
         Node newNode = new Node(pelanggan);
         if (apakahKosong()) {
-            head = newNode;
-            tail = newNode;
+            head = tail = newNode;
         } else {
             tail.next = newNode;
             newNode.prev = tail;
             tail = newNode;
         }
         totalAntrian++;
-        System.out.println("[+] Berhasil ditambahkan ke Antrian VIP (Double Linked List): " + pelanggan);
+        System.out.println("[+] Masuk antrian VIP     : " + pelanggan);
     }
 
     @Override
     public void hapusPelanggan() {
         if (apakahKosong()) {
-            System.out.println("[!] Antrian VIP kosong! Tidak ada pelanggan yang dapat dilayani.");
+            System.out.println("[!] Antrian VIP kosong, tidak ada pelanggan untuk dilayani.");
             return;
         }
 
-        Pelanggan pelangganDihapus = head.data;
+        Pelanggan dilayani = head.data;
         head = head.next;
         totalAntrian--;
 
@@ -58,67 +50,49 @@ public class DoubleLinkedList extends AntrianKafe {
         } else {
             head.prev = null;
         }
-
-        System.out.println("[-] Melayani pelanggan (FIFO): " + pelangganDihapus);
+        System.out.println("[-] Melayani pelanggan (FIFO): " + dilayani);
     }
 
     @Override
     public void tampilkanAntrian() {
-        System.out.println("=== DAFTAR ANTRIAN: VIP (DOUBLE LINKED LIST) ===");
+        System.out.println("=== DAFTAR ANTRIAN: VIP (Double Linked List) ===");
         if (apakahKosong()) {
-            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
-            System.out.println("Total Antrian: 0");
+            System.out.println("[ Antrian kosong ]");
+            System.out.println("Total: 0 orang");
             return;
         }
 
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
         Node current = head;
-        int index = 1;
+        int no = 1;
         while (current != null) {
-            Pelanggan p = current.data;
-            String nama = formatKolom(p.getNama(), 18);
-            String noHp = formatKolom(p.getNoHp(), 14);
-            String pesanan = formatKolom(p.getPesanan(), 16);
-            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
-                    index, p.getKodeAntrian(), nama, noHp, pesanan);
+            System.out.println(no + ". " + current.data);
             current = current.next;
-            index++;
+            no++;
         }
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("Total Antrian: " + totalAntrian);
+        System.out.println("Total Antrian: " + totalAntrian + " orang");
+    }
+
+    // Traversal mundur dari belakang memanfaatkan pointer prev
+    public void tampilkanAntrianDariBelakang() {
+        System.out.println("=== DAFTAR ANTRIAN: VIP (Traversal Mundur dari Belakang) ===");
+        if (apakahKosong()) {
+            System.out.println("[ Antrian kosong ]");
+            System.out.println("Total: 0 orang");
+            return;
+        }
+
+        Node current = tail;
+        int no = totalAntrian;
+        while (current != null) {
+            System.out.println(no + ". " + current.data);
+            current = current.prev;
+            no--;
+        }
+        System.out.println("Total Antrian: " + totalAntrian + " orang");
     }
 
     @Override
     public boolean apakahKosong() {
         return head == null;
-    }
-
-    public void tampilkanAntrianDariBelakang() {
-        System.out.println("=== DAFTAR ANTRIAN: VIP (TRAVERSAL DARI BELAKANG) ===");
-        if (apakahKosong()) {
-            System.out.println("[ Antrian saat ini kosong - Tidak ada pelanggan yang mengantre ]");
-            System.out.println("Total Antrian: 0");
-            return;
-        }
-
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("| No  | No. Antrian   | Nama Pelanggan     | No. HP         | Pesanan          |");
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        Node current = tail;
-        int index = totalAntrian;
-        while (current != null) {
-            Pelanggan p = current.data;
-            String nama = formatKolom(p.getNama(), 18);
-            String noHp = formatKolom(p.getNoHp(), 14);
-            String pesanan = formatKolom(p.getPesanan(), 16);
-            System.out.printf("| %-3d | %-13s | %-18s | %-14s | %-16s |\n",
-                    index, p.getKodeAntrian(), nama, noHp, pesanan);
-            current = current.prev;
-            index--;
-        }
-        System.out.println("+-----+---------------+--------------------+----------------+------------------+");
-        System.out.println("Total Antrian: " + totalAntrian);
     }
 }
